@@ -1,0 +1,105 @@
+.ms-select-root {
+  position: relative;
+  width: 100%;
+  font-family: Degular, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.ms-select-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 2px solid rgba(0,0,0,0.08);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ms-select-header.open {
+  box-shadow: 0 6px 18px rgba(32, 45, 60, 0.08);
+}
+
+.ms-select-label {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #0f1720;
+  font-size: 14px;
+}
+
+.ms-select-caret {
+  color: #0f1720;
+  transition: transform 180ms ease;
+}
+.ms-select-caret.rot { transform: rotate(180deg); }
+
+.ms-select-dropdown {
+  position: absolute;
+  z-index: 40;
+  left: 0;
+  right: 0;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(92, 115, 131, 0.08), 0px 6px 12px rgba(92, 115, 131, 0.08);
+  padding: 12px;
+  border: 1px solid rgba(15, 23, 32, 0.04);
+}
+
+.ms-select-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 8px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+.ms-select-row:hover { background: rgba(15,23,32,0.03); }
+
+.ms-native-checkbox {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  margin-right: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #DBDEE5;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+.ms-native-checkbox:focus {
+  outline: 2px solid rgba(17,24,39,0.12);
+}
+.ms-native-checkbox:checked {
+  background: #111827;
+  border-color: #111827;
+}
+.ms-native-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.ms-row-label { font-size: 14px; color: #0f1720; }
+
+@media (min-width: 640px) {
+  .ms-select-root { max-width: 520px; }
+}
