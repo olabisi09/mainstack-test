@@ -20,7 +20,6 @@ interface TransactionsTableProps {
 }
 
 export const TransactionsTable: React.FC<TransactionsTableProps> = ({
-  transactions,
   filteredTransactions,
   isDrawerOpen,
   setDrawerOpen,
