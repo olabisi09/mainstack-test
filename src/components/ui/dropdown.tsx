@@ -82,7 +82,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       {open && (
         <div
           role="menu"
-          className={`absolute right-0 mt-2 z-50 bg-white rounded-md shadow-lg ${menuClassName}`}
+          className={`absolute right-0 mt-2 z-50 w-80 bg-white rounded-md shadow-lg ${menuClassName}`}
           onClick={onMenuClick}
         >
           {children}

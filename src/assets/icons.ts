@@ -13,6 +13,10 @@ import DownloadIcon from "./download.svg?react";
 import ArrowIcon from "./arrow.svg?react";
 import CancelIcon from "./cancel.svg?react";
 import ReceiptIcon from "./receipt.svg?react";
+import AppBar1 from "./app-bar-1.svg?react";
+import AppBar2 from "./app-bar-2.svg?react";
+import AppBar3 from "./app-bar-3.svg?react";
+import AppBar4 from "./app-bar-4.svg?react";
 
 export {
   AnalyticsIcon,
@@ -30,4 +34,8 @@ export {
   ArrowIcon,
   CancelIcon,
   ReceiptIcon,
+  AppBar1,
+  AppBar2,
+  AppBar3,
+  AppBar4,
 };

@@ -1,4 +1,5 @@
 import { InfoIcon } from "./assets/icons";
+import { FloatingBar } from "./components/floating-bar";
 import { Header } from "./components/header";
 import { TransactionChart } from "./components/transaction-chart";
 import { TransactionsTable } from "./components/transactions-table";
@@ -68,7 +69,7 @@ function App() {
           <TransactionsTable transactions={transactions} />
         </section>
       </div>
-      {/* <FloatingBar /> */}
+      <FloatingBar />
     </main>
   );
 }
