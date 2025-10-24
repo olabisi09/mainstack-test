@@ -108,6 +108,7 @@
   --color-foreground: rgb(19, 19, 22);
   --color-muted: rgb(86, 97, 107);
   --color-accent: rgb(239, 241, 246);
+  --color-disabled: rgb(219, 222, 229);
 
   --radius-larger: 100px;
 }
@@ -151,6 +152,9 @@ a {
 
 button {
   cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
 }
 
 svg {

@@ -1,73 +1,85 @@
-# React + TypeScript + Vite
+# Mainstack — Transactions dashboard (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository is a small transactions dashboard demo built with React, TypeScript and Vite. It includes a set of UI components, hooks, and tests using Vitest and React Testing Library.
 
-Currently, two official plugins are available:
+## Quick start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Prerequisites
 
-## React Compiler
+- Node.js (v18+ recommended)
+- npm or yarn
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Install dependencies
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+# or
+# yarn
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Run the development server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Build for production
+
+```bash
+npm run build
+npm run preview
+```
+
+Lint the code
+
+```bash
+npm run lint
+```
+
+## Tests
+
+This project uses Vitest + @testing-library/react for unit tests. The test environment is configured in `vite.config.ts` and the setup file is `src/test-setup.ts`.
+
+Run the full test suite
+
+```bash
+npm test
+```
+
+Run a single test file (faster when iterating)
+
+```bash
+npx vitest run src/components/__tests__/transaction-chart.test.tsx
+```
+
+Run tests in watch mode
+
+```bash
+npx vitest
+```
+
+Notes about test environment
+
+- JSDOM (used by the test environment) doesn't implement certain browser APIs like `ResizeObserver`. A minimal polyfill is added in `src/test-setup.ts` to avoid errors when mounting chart components (Recharts' `ResponsiveContainer`) in tests.
+- If you see errors about missing globals, ensure `vite.config.ts` points to the correct `setupFiles` and that `src/test-setup.ts` imports `@testing-library/jest-dom` (already configured).
+
+## Project structure (important files)
+
+- `src/` — application source
+  - `components/` — UI components and tests
+  - `hooks/` — custom hooks (e.g. `useTransactionFilters`)
+  - `assets/` — icons and static assets
+  - `test-setup.ts` — test environment setup and polyfills
+
+## Troubleshooting
+
+- Tests fail with `ResizeObserver is not defined`: make sure `src/test-setup.ts` contains the ResizeObserver mock and that `vite.config.ts` references it under `test.setupFiles`.
+- If type errors appear during build, run `npm run build` locally to see tsc output and ensure your TypeScript version matches `package.json`.
+
+## Contributing
+
+Feel free to open PRs to improve components, tests or add more features. Keep changes small and include tests for new behavior.
+
+---
+
+If you'd like, I can add a short developer checklist (pre-commit hooks, format/lint commands) or expand the README with screenshots and a feature list.

@@ -8,14 +8,19 @@ export const TransactionChart = ({
   transactions: Transaction[];
   wallet: Wallet;
 }) => {
-  const lineData = transactions
-    ?.map((transaction) => ({
-      name: transaction.date,
-      uv: transaction.amount,
-    }))
-    .sort((a, b) => new Date(a.name).getTime() - new Date(b.name).getTime());
+  const lineData =
+    transactions
+      ?.map((transaction) => ({
+        name: transaction.date,
+        uv: transaction.amount,
+      }))
+      .sort(
+        (a, b) => new Date(a.name).getTime() - new Date(b.name).getTime()
+      ) ?? [];
 
-  const xTicks = [lineData?.[0].name, lineData?.[lineData.length - 1].name];
+  const xTicks = lineData.length
+    ? [lineData?.[0].name, lineData?.[lineData.length - 1].name]
+    : undefined;
 
   return (
     <div className="w-full xl:w-191.25">
@@ -39,8 +44,9 @@ export const TransactionChart = ({
             tickLine={false}
             stroke="#DBDEE5"
             ticks={xTicks}
+            interval={"preserveStartEnd"}
             tickFormatter={(date) => format(parseISO(date), "MMM d, yyyy")}
-            tick={{ color: "#56616B", fontWeight: "500" }}
+            tick={{ fill: "#56616B", fontWeight: "500" }}
           />
           {/* <YAxis width="auto" /> */}
           <Line

@@ -1,18 +1,30 @@
 import { useState } from "react";
 import {
   AnalyticsIcon,
+  AppBar1,
+  AppBar2,
+  AppBar3,
+  AppBar4,
   AppsIcon,
   BellIcon,
+  BlockIcon,
+  BugIcon,
   ChevronArrow,
   CrmIcon,
+  GiftIcon,
   HomeIcon,
+  LogoutIcon,
   MenuIcon,
   MessageIcon,
+  ReceiptIcon,
   RevenueIcon,
+  SettingsIcon,
+  UserIcon,
 } from "../assets/icons";
 import logo from "../assets/logo.svg";
 import Dropdown from "./ui/dropdown";
 import { IconButton } from "./ui/icon-button";
+import { useAPI } from "../hooks/useAPI";
 
 type MenuItem = {
   label: string;
@@ -21,7 +33,10 @@ type MenuItem = {
 };
 
 export const Header = () => {
+  const { userQuery } = useAPI();
   const [expand, setExpand] = useState(false);
+
+  const user = userQuery.data?.data as User;
   const menuItems: MenuItem[] = [
     { label: "Home", path: "/", icon: <HomeIcon /> },
     { label: "Analytics", path: "/analytics", icon: <AnalyticsIcon /> },
@@ -31,18 +46,18 @@ export const Header = () => {
   ];
 
   const dropdownItems: MenuItem[] = [
-    { label: "Settings", path: "/settings", icon: <MenuIcon /> },
+    { label: "Settings", path: "/settings", icon: <SettingsIcon /> },
     {
       label: "Purchase History",
       path: "/purchase-history",
-      icon: <MenuIcon />,
+      icon: <ReceiptIcon />,
     },
 
-    { label: "Refer and Earn", path: "/refer-and-earn", icon: <MenuIcon /> },
-    { label: "Integrations", path: "/integrations", icon: <MenuIcon /> },
-    { label: "Report Bug", path: "/report-bug", icon: <MenuIcon /> },
-    { label: "Switch Account", path: "/switch-account", icon: <MenuIcon /> },
-    { label: "Sign Out", path: "/sign-out", icon: <MenuIcon /> },
+    { label: "Refer and Earn", path: "/refer-and-earn", icon: <GiftIcon /> },
+    { label: "Integrations", path: "/integrations", icon: <BlockIcon /> },
+    { label: "Report Bug", path: "/report-bug", icon: <BugIcon /> },
+    { label: "Switch Account", path: "/switch-account", icon: <UserIcon /> },
+    { label: "Sign Out", path: "/sign-out", icon: <LogoutIcon /> },
   ];
 
   return (
@@ -99,11 +114,11 @@ export const Header = () => {
               <div className="space-y-2 px-2">
                 <a
                   href="/link-in-bio"
-                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:shadow-sm"
+                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:border border-accent"
                   data-dropdown-close="true"
                 >
                   <span className="w-10 h-10 flex items-center justify-center rounded-md border border-accent">
-                    <MenuIcon />
+                    <AppBar1 />
                   </span>
                   <section className="w-full flex justify-between items-center group">
                     <div>
@@ -118,11 +133,11 @@ export const Header = () => {
 
                 <a
                   href="/store"
-                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:shadow-sm"
+                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:border border-accent"
                   data-dropdown-close="true"
                 >
                   <span className="w-10 h-10 flex items-center justify-center rounded-md border border-accent">
-                    <MenuIcon />
+                    <AppBar2 />
                   </span>
                   <section className="w-full flex justify-between items-center group">
                     <div>
@@ -137,11 +152,11 @@ export const Header = () => {
 
                 <a
                   href="/media-kit"
-                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:shadow-sm"
+                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:border border-accent"
                   data-dropdown-close="true"
                 >
                   <span className="w-10 h-10 flex items-center justify-center rounded-md border border-accent">
-                    <MenuIcon />
+                    <AppBar3 />
                   </span>
                   <section className="w-full flex justify-between items-center group">
                     <div>
@@ -156,11 +171,11 @@ export const Header = () => {
 
                 <a
                   href="/invoicing"
-                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:shadow-sm"
+                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:border border-accent"
                   data-dropdown-close="true"
                 >
                   <span className="w-10 h-10 flex items-center justify-center rounded-md border border-accent">
-                    <MenuIcon />
+                    <AppBar4 />
                   </span>
                   <section className="w-full flex justify-between items-center group">
                     <div>
@@ -175,11 +190,11 @@ export const Header = () => {
 
                 <a
                   href="/bookings"
-                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:bg-accent"
+                  className="flex items-start gap-3 px-3 py-2 rounded-md hover:border border-accent"
                   data-dropdown-close="true"
                 >
-                  <span className="w-10 h-10 flex items-center justify-center rounded-md bg-white">
-                    <MenuIcon />
+                  <span className="w-10 h-10 flex items-center justify-center rounded-md border border-accent">
+                    <AppBar1 />
                   </span>
                   <section className="w-full flex justify-between items-center group">
                     <div>
@@ -208,7 +223,7 @@ export const Header = () => {
                   }}
                   className="rounded-full w-8 h-8 flex items-center justify-center text-white font-semibold"
                 >
-                  OJ
+                  {user?.first_name.charAt(0) + user?.last_name.charAt(0)}
                 </span>
                 <MenuIcon className="text-muted" />
               </button>
@@ -223,19 +238,21 @@ export const Header = () => {
                   }}
                   className="rounded-full w-12 h-12 text-xl flex items-center justify-center text-white font-semibold"
                 >
-                  OJ
+                  {user?.first_name.charAt(0) + user?.last_name.charAt(0)}
                 </span>
                 <div>
-                  <h2 className="font-semibold text-xl">Oliver Jones</h2>
-                  <p className="text-muted text-sm">oliver.jones@gmail.com</p>
+                  <h2 className="font-semibold text-xl">
+                    {user?.first_name} {user?.last_name}
+                  </h2>
+                  <p className="text-muted text-sm">{user?.email}</p>
                 </div>
               </section>
-              <section>
+              <section className="px-4">
                 {dropdownItems.map((item) => (
                   <a
                     key={item.path}
                     href={item.path}
-                    className="flex items-center gap-1 px-4 py-3 font-medium hover:bg-accent"
+                    className="flex items-center gap-2 px-2 py-3 font-medium rounded hover:bg-accent"
                     data-dropdown-close="true"
                   >
                     {item.icon}

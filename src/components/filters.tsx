@@ -13,7 +13,7 @@ export const Filters: React.FC<{
   const transactionTypeOptions = [
     { label: "Store Transactions", value: "Store Transactions" },
     { label: "Get Tipped", value: "Get Tipped" },
-    { label: "Withdrawals", value: "Withdrawals" },
+    { label: "Withdrawals", value: "Withdrawal" },
     { label: "Chargebacks", value: "Chargebacks" },
     { label: "Refer & Earn", value: "Refer & Earn" },
   ];
@@ -97,7 +97,16 @@ export const Filters: React.FC<{
         >
           Clear
         </Button>
-        <Button type="submit" className="flex-1">
+        <Button
+          disabled={
+            !value.from &&
+            !value.to &&
+            !value.transactionTypes.length &&
+            !value.transactionStatuses.length
+          }
+          type="submit"
+          className="flex-1"
+        >
           Apply
         </Button>
       </div>

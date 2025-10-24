@@ -20,7 +20,7 @@ export const Drawer: React.FC<{
       />
 
       <aside
-        className={`fixed top-0 right-0 z-50 h-full bg-transparent p-2 w-[min(28.5rem,100%)] 
+        className={`fixed top-0 right-0 z-99 h-full bg-transparent p-2 w-[min(28.5rem,100%)] 
     transition duration-300 ease-in-out
     ${isOpen ? "translate-x-0" : "translate-x-full"}`}
         role="dialog"

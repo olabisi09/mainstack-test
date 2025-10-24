@@ -3,25 +3,37 @@ import { capitalize, formatCurrency, formatDate } from "../helpers";
 import { Button } from "./ui/button";
 import { Drawer } from "./ui/drawer";
 import { Filters } from "./filters";
-import { useTransactionFilters } from "../hooks/useTransactionFilters";
+import { type FiltersState } from "../hooks/useTransactionFilters";
 import { EmptyState } from "./empty-state";
 
-export const TransactionsTable: React.FC<{ transactions: Transaction[] }> = ({
+interface TransactionsTableProps {
+  transactions: Transaction[];
+  // optional externalized filter state & controls
+  filteredTransactions: Transaction[] | null;
+  isDrawerOpen: boolean;
+  setDrawerOpen: (open: boolean) => void;
+  filters: FiltersState;
+  setFilters: (f: FiltersState) => void;
+  apply: () => void;
+  clear: () => void;
+  appliedFilters: FiltersState;
+}
+
+export const TransactionsTable: React.FC<TransactionsTableProps> = ({
   transactions,
+  filteredTransactions,
+  isDrawerOpen,
+  setDrawerOpen,
+  filters,
+  setFilters,
+  apply,
+  clear,
+  appliedFilters,
 }) => {
-  const {
-    isDrawerOpen,
-    setDrawerOpen,
-    filters,
-    setFilters,
-    apply,
-    clear,
-    filteredTransactions,
-    appliedFilters,
-  } = useTransactionFilters(transactions);
-  const appliedFiltersCount = Object.values(appliedFilters).filter((v) =>
-    Array.isArray(v) ? v.length > 0 : v
+  const appliedFiltersCount = Object.values(appliedFilters ?? {}).filter((v) =>
+    Array.isArray(v) ? v.length > 0 : Boolean(v)
   ).length;
+
   return (
     <div>
       <section className="flex items-center justify-between">
@@ -30,7 +42,7 @@ export const TransactionsTable: React.FC<{ transactions: Transaction[] }> = ({
             {filteredTransactions?.length || 0} Transactions
           </h2>
           <p className="text-muted font-medium text-sm tracking-[-0.2px]">
-            Your transactions for the last 7 days
+            Your transactions for the selected period
           </p>
         </div>
         <div className="flex gap-4">
@@ -42,7 +54,7 @@ export const TransactionsTable: React.FC<{ transactions: Transaction[] }> = ({
           >
             Filter
             {appliedFiltersCount > 0 && (
-              <span className="bg-primary text-white text-xs font-semibold leading-4 tracking-[-0.2px] px-2 py-0.5 rounded-full">
+              <span className="bg-foreground text-background text-xs font-semibold leading-4 tracking-[-0.2px] px-2 py-0.5 rounded-full">
                 {appliedFiltersCount}
               </span>
             )}

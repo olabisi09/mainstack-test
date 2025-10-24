@@ -15,5 +15,10 @@ export const useAPI = () => {
     queryFn: async () => await axios.get<Wallet>(`${baseURL}/wallet`),
   });
 
-  return { transactionsQuery, walletQuery };
+  const userQuery = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => await axios.get<User>(`${baseURL}/user`),
+  });
+
+  return { transactionsQuery, walletQuery, userQuery };
 };

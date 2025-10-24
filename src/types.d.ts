@@ -23,3 +23,9 @@ interface Wallet {
   pending_payout: number;
   ledger_balance: number;
 }
+
+interface User {
+  first_name: string;
+  last_name: string;
+  email: string;
+}

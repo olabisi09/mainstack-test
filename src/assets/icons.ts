@@ -17,6 +17,12 @@ import AppBar1 from "./app-bar-1.svg?react";
 import AppBar2 from "./app-bar-2.svg?react";
 import AppBar3 from "./app-bar-3.svg?react";
 import AppBar4 from "./app-bar-4.svg?react";
+import SettingsIcon from "./settings.svg?react";
+import LogoutIcon from "./logout.svg?react";
+import UserIcon from "./user.svg?react";
+import BugIcon from "./bug.svg?react";
+import GiftIcon from "./gift.svg?react";
+import BlockIcon from "./blocks.svg?react";
 
 export {
   AnalyticsIcon,
@@ -38,4 +44,10 @@ export {
   AppBar2,
   AppBar3,
   AppBar4,
+  SettingsIcon,
+  LogoutIcon,
+  UserIcon,
+  BugIcon,
+  GiftIcon,
+  BlockIcon,
 };

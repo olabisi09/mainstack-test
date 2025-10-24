@@ -5,11 +5,22 @@ import { TransactionChart } from "./components/transaction-chart";
 import { TransactionsTable } from "./components/transactions-table";
 import { formatCurrency } from "./helpers";
 import { useAPI } from "./hooks/useAPI";
+import { useTransactionFilters } from "./hooks/useTransactionFilters";
 
 function App() {
   const { transactionsQuery, walletQuery } = useAPI();
-
   const transactions = transactionsQuery.data?.data as Transaction[];
+  const {
+    isDrawerOpen,
+    setDrawerOpen,
+    filters,
+    setFilters,
+    apply,
+    clear,
+    filteredTransactions,
+    appliedFilters,
+  } = useTransactionFilters(transactions);
+
   const wallet = walletQuery.data?.data as Wallet;
 
   return (
@@ -17,7 +28,10 @@ function App() {
       <Header />
       <div className="px-12 xl:px-35 pt-16 pb-23.25">
         <section className="flex flex-col xl:flex-row justify-between mb-20.5">
-          <TransactionChart transactions={transactions} wallet={wallet} />
+          <TransactionChart
+            transactions={filteredTransactions}
+            wallet={wallet}
+          />
           <div className="xl:w-67.75 grid gap-8">
             <div className="grid gap-2">
               <div className="flex items-center justify-between">
@@ -66,7 +80,17 @@ function App() {
           </div>
         </section>
         <section>
-          <TransactionsTable transactions={transactions} />
+          <TransactionsTable
+            transactions={transactions}
+            filteredTransactions={filteredTransactions}
+            isDrawerOpen={isDrawerOpen}
+            setDrawerOpen={setDrawerOpen}
+            filters={filters}
+            setFilters={setFilters}
+            apply={apply}
+            clear={clear}
+            appliedFilters={appliedFilters}
+          />
         </section>
       </div>
       <FloatingBar />

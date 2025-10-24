@@ -17,6 +17,13 @@ export const capitalize = (str: string): string => {
   return str.replace(/\b\w/g, (char) => char.toUpperCase());
 };
 
+export const getInitials = (str: string): string => {
+  if (!str) return "";
+  const names = str.split(" ");
+  const initials = names.map((name) => name.charAt(0).toUpperCase());
+  return initials.join("");
+};
+
 export const formatDate = (dateStr: string): string => {
   if (!dateStr) return "";
   const date = new Date(dateStr);

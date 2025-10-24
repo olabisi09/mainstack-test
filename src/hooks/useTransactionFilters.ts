@@ -110,8 +110,8 @@ export function useTransactionFilters(transactions: Transaction[]) {
       if (appliedFilters.transactionTypes?.length) {
         const candidates = [
           String(tx?.type || ""),
-          String(tx?.metadata?.product_name || ""),
-          String(tx?.metadata?.name || ""),
+          // String(tx?.metadata?.product_name || ""),
+          // String(tx?.metadata?.name || ""),
         ]
           .join(" ")
           .toLowerCase();
