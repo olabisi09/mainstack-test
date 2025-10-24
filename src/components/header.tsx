@@ -54,7 +54,7 @@ export const Header = () => {
     },
 
     { label: "Refer and Earn", path: "/refer-and-earn", icon: <GiftIcon /> },
-    { label: "Integrations", path: "/integrations", icon: <BlockIcon /> },
+    { label: "Integrations", path: "/integrations", icon: <AppsIcon /> },
     { label: "Report Bug", path: "/report-bug", icon: <BugIcon /> },
     { label: "Switch Account", path: "/switch-account", icon: <UserIcon /> },
     { label: "Sign Out", path: "/sign-out", icon: <LogoutIcon /> },
@@ -76,9 +76,9 @@ export const Header = () => {
             </a>
           ))}
           <Dropdown
+            onOpenChange={setExpand}
             trigger={
               <div
-                onClick={() => setExpand((prev) => !prev)}
                 className={`flex items-center rounded-larger ${
                   expand
                     ? "bg-foreground text-background divide-x divide-muted"

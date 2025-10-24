@@ -11,6 +11,7 @@ type DropdownProps = {
   menuClassName?: string;
   /** Whether the dropdown should close when an item inside is clicked (default true) */
   closeOnSelect?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -19,6 +20,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   className = "",
   menuClassName = "",
   closeOnSelect = true,
+  onOpenChange,
 }) => {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -45,6 +47,10 @@ export const Dropdown: React.FC<DropdownProps> = ({
       document.removeEventListener("keydown", onKey as EventListener);
     };
   }, []);
+
+  useEffect(() => {
+    if (typeof onOpenChange === "function") onOpenChange(open);
+  }, [open, onOpenChange]);
 
   // Clone trigger to attach click handler and accessibility attributes
   const triggerEl = cloneElement(trigger, {
