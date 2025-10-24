@@ -6,7 +6,7 @@ export const EmptyState: React.FC<{
   cta?: React.ReactNode;
 }> = ({ title, description, cta }) => {
   return (
-    <div className="flex flex-col justify-center py-16 max-w-92.25">
+    <div className="mx-auto flex flex-col justify-center py-16 max-w-92.25">
       <div className="w-12 h-12 mb-5 rounded-2xl grid place-items-center bg-[linear-gradient(135deg,#DBDEE6_1.89%,#F6F7F9_98.77%)]">
         <ReceiptIcon />
       </div>
@@ -20,7 +20,3 @@ export const EmptyState: React.FC<{
     </div>
   );
 };
-
-// convert this to TailwindCSS background:
-// linear-gradient(135deg, #DBDEE6 1.89%, #F6F7F9 98.77%); gradient-[(135deg, #DBDEE6 1.89%, #F6F7F9 98.77%)]
-// background: linear-gradient(135deg, #DBDEE6 1.89%, #F6F7F9 98.77%);
