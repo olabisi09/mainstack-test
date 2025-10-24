@@ -36,13 +36,18 @@ export const Filters: React.FC<{
             <Button
               key={date}
               variant="outline"
-              className="text-sm font-semibold leading-4! tracking-[-0.4px]"
+              className={`text-sm font-semibold leading-4! tracking-[-0.4px] ${
+                value.preset === date
+                  ? "bg-foreground text-background! hover:bg-foreground/80"
+                  : ""
+              }`}
               onClick={() =>
                 onChange({
                   ...value,
                   preset: value.preset === date ? "" : date,
                 })
               }
+              aria-pressed={value.preset === date}
             >
               {date}
             </Button>
