@@ -68,7 +68,7 @@ export const Header = () => {
             <a
               key={item.path}
               href={item.path}
-              className="font-semibold py-2 pl-3.5 rounded-larger pr-4.5 text-muted hover:bg-foreground hover:text-background transition-colors flex items-center gap-1"
+              className="font-semibold py-2 pl-3.5 rounded-larger pr-4.5 text-muted hover:bg-accent flex items-center gap-1"
             >
               <span className="w-5 h-5">{item.icon}</span>
               {item.label}
@@ -80,7 +80,7 @@ export const Header = () => {
               <div
                 className={`flex items-center rounded-larger ${
                   expand
-                    ? "bg-foreground text-background divide-x divide-muted"
+                    ? "bg-foreground text-background divide-x divide-accent"
                     : ""
                 }`}
               >
@@ -88,8 +88,8 @@ export const Header = () => {
                   className={`${
                     expand
                       ? "rounded-r-none text-background"
-                      : "rounded-l-larger rounded-r-larger text-muted"
-                  } font-semibold py-2 pl-3.5 rounded-l-larger pr-4.5 hover:bg-foreground hover:text-background transition-colors flex items-center gap-1`}
+                      : "rounded-l-larger rounded-r-larger text-muted hover:bg-accent"
+                  } font-semibold py-2 pl-3.5 rounded-l-larger pr-4.5 transition-colors flex items-center gap-1`}
                 >
                   <span className="w-5 h-5">
                     <AppsIcon />
