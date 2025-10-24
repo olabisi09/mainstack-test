@@ -66,7 +66,9 @@ export default function MultiSelect({
       <div className={`ms-select-root ${className}`} ref={rootRef}>
         <button
           type="button"
-          className={`ms-select-header ${open ? "open" : ""}`}
+          className={`ms-select-header focus:outline-none focus:ring-2! focus:ring-foreground! ${
+            open ? "open" : ""
+          }`}
           aria-haspopup="listbox"
           aria-expanded={open}
           onClick={() => setOpen((s) => !s)}
