@@ -7,7 +7,6 @@ import {
   AppBar4,
   AppsIcon,
   BellIcon,
-  BlockIcon,
   BugIcon,
   ChevronArrow,
   CrmIcon,
